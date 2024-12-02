@@ -1,37 +1,124 @@
-# Library Management API
+# 📚 Library Management API
 
-This project is a simple **Library Management API** built with [Gin](https://github.com/gin-gonic/gin), a lightweight and high-performance web framework for Go. The API allows users to manage a collection of books, including retrieving book details, adding new books, checking out books, and returning books.
+A simple **Library Management API** built using [Gin](https://github.com/gin-gonic/gin), a lightweight and high-performance web framework for Go. This API allows users to manage a collection of books, including retrieving book details, adding new books, checking out books, and returning books.
 
-## Features
+---
 
-1. **Retrieve All Books**  
-   Endpoint: `GET /books`  
-   - Fetches a list of all books in the library.
+## 🚀 Features
 
-2. **Retrieve Book by ID**  
-   Endpoint: `GET /book/:id`  
-   - Fetches the details of a specific book by its ID.  
-   - Returns an error if the book is not found.
+### 📖 Manage Books
+- Retrieve a list of all books.
+- Fetch details of a specific book by its unique ID.
+- Add new books to the collection.
 
-3. **Add a New Book**  
-   Endpoint: `POST /books`  
-   - Allows the addition of a new book to the library collection.  
-   - Expects a JSON payload with book details (`id`, `title`, `author`, `quantity`).
+### 🔄 Book Transactions
+- Check out a book (if available in stock).
+- Return a borrowed book.
 
-4. **Check Out a Book**  
-   Endpoint: `PATCH /checkout?id={book_id}`  
-   - Reduces the quantity of a specified book by 1 if it is available.  
-   - Returns an error if the book is not found or out of stock.
+---
 
-5. **Return a Book**  
-   Endpoint: `PATCH /return?id={book_id}`  
-   - Increases the quantity of a specified book by 1.  
-   - Returns an error if the book is not found.
+## 📂 API Endpoints
 
-## How to Run
+### 1️⃣ Get All Books
+**`GET /books`**  
+**Description**: Fetches a list of all available books in the library.  
+**Response Example**:
+```json
+[
+  { "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 },
+  { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 }
+]
+2️⃣ Get Book by ID
+GET /book/:id
+Description: Retrieves a book's details using its unique ID.
+Response Example (Success):
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+json
+Copy code
+{ "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 }
+Response Example (Error):
+
+json
+Copy code
+{ "message": "Book not found." }
+3️⃣ Add a New Book
+POST /books
+Description: Adds a new book to the library.
+Request Body Example:
+
+json
+Copy code
+{
+  "id": "4",
+  "title": "1984",
+  "author": "George Orwell",
+  "quantity": 3
+}
+Response Example:
+
+json
+Copy code
+{ "id": "4", "title": "1984", "author": "George Orwell", "quantity": 3 }
+4️⃣ Check Out a Book
+PATCH /checkout?id={book_id}
+Description: Reduces the quantity of the book by 1 if it is in stock.
+Response Example (Success):
+
+json
+Copy code
+{ "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 4 }
+Response Example (Out of Stock):
+
+json
+Copy code
+{ "message": "Book not available" }
+5️⃣ Return a Book
+PATCH /return?id={book_id}
+Description: Increases the quantity of the book by 1.
+Response Example:
+
+json
+Copy code
+{ "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 }
+🛠️ How to Run
+Clone the repository:
+
+bash
+Copy code
+git clone <repository-url>
+cd <repository-folder>
+Install dependencies:
+
+bash
+Copy code
+go mod tidy
+Run the application:
+
+bash
+Copy code
+go run main.go
+Access the API:
+The API will be available at:
+http://localhost:8004
+
+📝 Example Book Data
+The API is initialized with the following book data:
+
+json
+Copy code
+[
+  { "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 },
+  { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 },
+  { "id": "3", "title": "War and Peace", "author": "Leo Tolstoy", "quantity": 6 }
+]
+📌 Requirements
+Go 1.18 or later
+Gin framework
+📈 Future Enhancements
+Add persistent database support to replace in-memory storage.
+Implement user authentication for secure book transactions.
+Add book search functionality by title or author.
+Improve error handling and logging.
+🤝 Contributing
+We welcome contributions! Feel free to fork this repository and submit pull requests to add features or fix bugs.
 
