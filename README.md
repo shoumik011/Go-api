@@ -28,7 +28,7 @@ A simple **Library Management API** built using [Gin](https://github.com/gin-gon
   { "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 },
   { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 }
 ]
-2️⃣ Get Book by ID
+###2️⃣ Get Book by ID
 GET /book/:id
 Description: Retrieves a book's details using its unique ID.
 Response Example (Success):
