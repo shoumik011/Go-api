@@ -34,12 +34,10 @@ Description: Retrieves a book's details using its unique ID.
 Response Example (Success):
 
 json
-Copy code
 { "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 }
 Response Example (Error):
 
 json
-Copy code
 { "message": "Book not found." }
 3️⃣ Add a New Book
 POST /books
@@ -47,7 +45,6 @@ Description: Adds a new book to the library.
 Request Body Example:
 
 json
-Copy code
 {
   "id": "4",
   "title": "1984",
@@ -57,7 +54,6 @@ Copy code
 Response Example:
 
 json
-Copy code
 { "id": "4", "title": "1984", "author": "George Orwell", "quantity": 3 }
 4️⃣ Check Out a Book
 PATCH /checkout?id={book_id}
@@ -65,7 +61,7 @@ Description: Reduces the quantity of the book by 1 if it is in stock.
 Response Example (Success):
 
 json
-Copy code
+
 { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 4 }
 Response Example (Out of Stock):
 
@@ -78,24 +74,24 @@ Description: Increases the quantity of the book by 1.
 Response Example:
 
 json
-Copy code
+
 { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 }
 🛠️ How to Run
 Clone the repository:
 
 bash
-Copy code
+
 git clone <repository-url>
 cd <repository-folder>
 Install dependencies:
 
 bash
-Copy code
+
 go mod tidy
 Run the application:
 
 bash
-Copy code
+
 go run main.go
 Access the API:
 The API will be available at:
@@ -104,8 +100,7 @@ http://localhost:8004
 📝 Example Book Data
 The API is initialized with the following book data:
 
-json
-Copy code
+
 [
   { "id": "1", "title": "In Search of Lost Time", "author": "Marcel Proust", "quantity": 2 },
   { "id": "2", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "quantity": 5 },
@@ -114,11 +109,5 @@ Copy code
 📌 Requirements
 Go 1.18 or later
 Gin framework
-📈 Future Enhancements
-Add persistent database support to replace in-memory storage.
-Implement user authentication for secure book transactions.
-Add book search functionality by title or author.
-Improve error handling and logging.
-🤝 Contributing
-We welcome contributions! Feel free to fork this repository and submit pull requests to add features or fix bugs.
+
 
